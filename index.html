@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Modal</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                 background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+    </style>
+</head>
+<body>
+    <h2>Click the button below</h2>
+    <button onclick="showModal()">Show Modal</button>
+    <button onclick="showTelegramPopup()">Show Telegram Popup</button>
+
+    <div id="modal">
+        <p>This is a modal window!</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function showTelegramPopup() {
+            Telegram.WebApp.showPopup({
+                title: "Alert",
+                message: "This is a Telegram-style modal!",
+                buttons: [{ text: "OK", type: "close" }]
+            });
+        }
+
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
