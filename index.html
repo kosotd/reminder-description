@@ -3,42 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Modal</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Leitner System & Interval Reminder</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        #modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                 background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+        body { font-family: Arial, sans-serif; margin: 40px; padding: 0; }
+        h1, h2 { color: #333; }
+        .container { max-width: 800px; margin: auto; }
+        .lang-switch { margin-bottom: 20px; }
+        .content { display: none; }
+        .content.active { display: block; }
+        .nav-button { padding: 10px 15px; background: #007bff; color: #fff; border: none; cursor: pointer; }
+        .nav-button:hover { background: #0056b3; }
     </style>
+    <script>
+        function switchLanguage(lang) {
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            document.getElementById(lang).classList.add('active');
+        }
+    </script>
 </head>
 <body>
-    <h2>Click the button below</h2>
-    <button onclick="showModal()">Show Modal</button>
-    <button onclick="showTelegramPopup()">Show Telegram Popup</button>
+    <div class="container">
+        <h1>Leitner System & Interval Reminder</h1>
+        <div class="lang-switch">
+            <button class="nav-button" onclick="switchLanguage('en')">English</button>
+            <button class="nav-button" onclick="switchLanguage('ru')">Русский</button>
+        </div>
 
-    <div id="modal">
-        <p>This is a modal window!</p>
-        <button onclick="closeModal()">Close</button>
+        <div id="en" class="content active">
+            <h2>Leitner System 📚</h2>
+            <p>The Leitner System is a method for efficient learning using spaced repetition. Cards with information are sorted into different boxes based on how well you remember them.</p>
+            <ul>
+                <li>If you recall a card correctly, it moves to the next box, increasing the interval before reviewing it again.</li>
+                <li>If you forget a card, it moves back to the first box and needs to be reviewed more frequently.</li>
+            </ul>
+            <p>This technique enhances long-term retention by focusing on the most difficult concepts.</p>
+            
+            <h2>Interval Reminder ⏳</h2>
+            <p>Interval Reminder is a simple system that repeats reminders at fixed time intervals. It is useful for routine tasks and regular habits.</p>
+            <ul>
+                <li>For example, you can set a reminder every 30 minutes to take a break.</li>
+                <li>Unlike the Leitner System, this does not adjust based on memory but follows a strict time schedule.</li>
+            </ul>
+        </div>
+
+        <div id="ru" class="content">
+            <h2>Система Лейтнера 📚</h2>
+            <p>Система Лейтнера — это метод эффективного запоминания с использованием интервального повторения. Карточки с информацией сортируются в разные группы в зависимости от того, насколько хорошо они запоминаются.</p>
+            <ul>
+                <li>Если вы правильно вспомнили карточку, она перемещается в следующую группу, увеличивая интервал перед следующим повторением.</li>
+                <li>Если вы забыли карточку, она возвращается в первую группу и повторяется чаще.</li>
+            </ul>
+            <p>Этот метод помогает сосредоточиться на самых сложных для запоминания концепциях и улучшает долговременное усвоение информации.</p>
+            
+            <h2>Интервальное напоминание ⏳</h2>
+            <p>Интервальное напоминание — это простая система, которая повторяет напоминания через фиксированные временные интервалы. Она полезна для рутинных задач и регулярных привычек.</p>
+            <ul>
+                <li>Например, можно установить напоминание каждые 30 минут, чтобы делать перерыв.</li>
+                <li>В отличие от системы Лейтнера, этот метод не адаптируется к запоминанию, а следует строгому временному графику.</li>
+            </ul>
+        </div>
     </div>
-
-    <script>
-        function showModal() {
-            document.getElementById("modal").style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-
-        function showTelegramPopup() {
-            Telegram.WebApp.showPopup({
-                title: "Alert",
-                message: "This is a Telegram-style modal!",
-                buttons: [{ text: "OK", type: "close" }]
-            });
-        }
-
-        Telegram.WebApp.ready();
-    </script>
 </body>
 </html>
